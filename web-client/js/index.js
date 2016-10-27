@@ -1,0 +1,3 @@
+function myButtonClick() {
+    alert("clicked");
+}
