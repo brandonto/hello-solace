@@ -1,0 +1,18 @@
+html, body, .container-table {
+    height: 100%;
+}
+
+.container-table {
+    display: table;
+}
+
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#middleText {
+    color: #2f83bc;
+    font-family: "Lucida Console";
+    font-size: 72px;
+}
