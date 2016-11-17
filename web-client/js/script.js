@@ -4,8 +4,8 @@ window.onload = function() {
         document.body.style.backgroundColor = color;
     }
 
-    //changeBackgroundColor('#cbcbcb');
-    changeBackgroundColor('#000000');
+    changeBackgroundColor('#D1BB40');
+    //changeBackgroundColor('#000000');
 
     var socket = new WebSocket('ws://127.0.0.1:5001');
 
