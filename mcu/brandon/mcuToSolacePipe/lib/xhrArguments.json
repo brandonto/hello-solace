@@ -1,0 +1,5 @@
+{
+	"useEternalAgent": false,
+	"socketIdleTimeout": 10000,
+	"maxSockets": 1024
+}

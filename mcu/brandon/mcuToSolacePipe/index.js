@@ -6,6 +6,54 @@ var port = new SerialPort('/dev/ttyACM0', {
     parity: 'none'
 });
 
+var solace = require('./lib/solclientjs');
+var publisher = {}
+var startSendingToSolace = false;
+
+var factoryProps = new solace.SolclientFactoryProperties();
+factoryProps.logLevel = solace.LogLevel.WARN;
+solace.SolclientFactory.init(factoryProps);
+
+var sessionProperties = new solace.SessionProperties();
+sessionProperties.url = 'http://69.20.234.126:8134';
+sessionProperties.vpnName = 'default';
+sessionProperties.userName = 'default';
+publisher.session = solace.SolclientFactory.createSession(
+    sessionProperties,
+    new solace.MessageRxCBInfo(function (session, message) {
+        console.log('message received = ' + message);
+    }, publisher),
+    new solace.SessionEventCBInfo(function (session, event) {
+        if (event.sessionEventCode === solace.SessionEventCode.UP_NOTICE) {
+            console.log('UP_NOTICE');
+            startSendingToSolace = true;
+            /*if (publisher.session != null) {
+                var messageText = 'ayylmao';
+                var message = solace.SolclientFactory.createMessage();
+                message.setDestination(solace.SolclientFactory.createTopic(publisher.topicName));
+                message.setSdtContainer(solace.SDTField.create(solace.SDTFieldType.STRING, messageText));
+                message.setDeliveryMode(solace.MessageDeliveryModeType.DIRECT);
+                try {
+                    publisher.session.send(message);
+                    console.log('Message published.');
+                } catch (error) {
+                    console.log(error.toString());
+                }
+            }*/
+        } else if (event.sessionEventCode === solace.SessionEventCode.CONNECTING) {
+            console.log('CONNECTING');
+        } else if (event.sessionEventCode === solace.SessionEventCode.DISCONNECTED) {
+            console.log('DISCONNECTED');
+            startSendingToSolace = false;
+        }
+    }, publisher)
+);
+try {
+    publisher.session.connect();
+} catch (error) {
+    console.log(error.toString());
+}
+
 var recvString = "";
 var recvLen = 0;
 
@@ -42,6 +90,21 @@ port.on('data', function (data) {
         recvString = recvString.slice(4);
     }
     console.log('recv:' + outString);
+
+    if (startSendingToSolace && publisher.session != null) {
+        var messageText = outString;
+        var message = solace.SolclientFactory.createMessage();
+        message.setDestination(solace.SolclientFactory.createTopic('brandon'));
+        message.setSdtContainer(solace.SDTField.create(solace.SDTFieldType.STRING, messageText));
+        message.setDeliveryMode(solace.MessageDeliveryModeType.DIRECT);
+        try {
+            publisher.session.send(message);
+            console.log('Message published.');
+        } catch (error) {
+            console.log(error.toString());
+        }
+    }
+
     port.write('world\0', function (err) {
         if (err) {
             console.log('Error on write' + err.message);
