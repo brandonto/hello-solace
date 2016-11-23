@@ -18,7 +18,7 @@ INCLUDES = -IInclude
 # OUTDIR: directory to use for output
 OUTDIR = build
 # TIVAWARE_PATH: path to tivaware folder
-TIVAWARE_PATH = /home/bto/embedded/tivaware
+TIVAWARE_PATH = /home/brandonto/embedded/tivaware
 
 # LD_SCRIPT: linker script
 LD_SCRIPT = $(MCU).ld
