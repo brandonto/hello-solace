@@ -7,8 +7,8 @@ var mySessionProperties = null;
         document.body.style.backgroundColor = color;
     }
 
-    //changeBackgroundColor('#cbcbcb');
-    changeBackgroundColor('#000000');
+    changeBackgroundColor('#D1BB40');
+    //changeBackgroundColor('#000000');
 
     mySessionProperties = new solace.SessionProperties();
 

@@ -8,21 +8,52 @@
   <title>Tech Meetup Web Client</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="lib/solclient.js"></script>
+  <script src="js/script.js"></script>
 </head>
 
 <body>
-  <div class="container container-table">
+  <div class="container">
+    <!--
     <div class="row vertical-center-row">
       <div class="text-center col-md-4 col-md-offset-4">
         <p id="middleText">Hello.</p>
       </div>
     </div>
+    -->
+    <!--
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">MCU
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">MCU1</a></li>
+        <li><a href="#">MCU2</a></li>
+      </ul>
+    </div>
+    -->
+<!-- Single button -->
+    <div class="row">
+    <div class="col-md-8">
+    <div class="page-header">
+      <h1>Hello Solace Project Web Client</h1>
+    </div>
+    </div>
+    <div class="col-md-4">
+    <img src="images/solace-logo-site-header.png" class="img-rounded" alt="solace-logo" width="304" height="140">
+    </div>
+    </div>
+    <div class="well"><h4 class="text-info">This is a web interface for displaying MCU's attribute and statistics.</h4></div> 
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select a MCU
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#">MCU1</a></li>
+          <li><a href="#">MCU2</a></li>
+          <li><a href="#">MCU3</a></li>
+        </ul>
+      </div> 
   </div>
 </body>
-
-
-<!-- solclientjs -->
-<script type="text/javascript" src="lib/solclient.js"></script>
-<script src="js/script.js"></script>
-
 </html>
