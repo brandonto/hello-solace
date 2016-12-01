@@ -2,6 +2,8 @@ window.onload = function() {
 
 var mySession = null;
 var mySessionProperties = null;
+var imageIndex = 1;
+var ghaithImagePath = "images/selfPortrait"
 
     function changeBackgroundColor(color) {
         document.body.style.backgroundColor = color;
@@ -9,7 +11,7 @@ var mySessionProperties = null;
 
     function brandonHandler(message) {
         var num = Number(message.getSdtContainer().getValue());
-        console.log(num);
+        //console.log(num);
         var newColor;
         if (num < 200){
             newColor = '#ffffff';
@@ -37,8 +39,24 @@ var mySessionProperties = null;
         changeBackgroundColor(newColor);
     }
 
+
     function ghaithHandler(message) {
         // TODO (Ghaith)
+        /*var imageName = document.getElementById("ghaithImage").src;
+        console.log(imageName);
+        var myRegexp = /(\d).png/;
+        var match = myRegexp.exec(imageName)
+        console.log(match[1])
+        var res = Number(match[1])+1;
+        res = res+".png"
+        console.log(res)
+        imageName.replace(/(\d).png/, res);
+        console.log(imageName);
+        document.getElementById("ghaithImage").src = imageName;
+        console.log(imageName);*/
+        imageIndex=(imageIndex%8)+1;
+        document.getElementById("ghaithImage").src = window.location.href + ghaithImagePath + imageIndex + '.png';
+        console.log(document.getElementById("ghaithImage").src);
     }
 
     function shalinHandler(message) {
@@ -86,7 +104,6 @@ var mySessionProperties = null;
             case 'brandon':
                 brandonHandler(message);
                 break;
-
             case 'ghaith':
                 ghaithHandler(message);
                 break;
