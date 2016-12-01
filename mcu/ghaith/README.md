@@ -9,4 +9,4 @@ Before running the Java app:
 
 Run the following commands inside the current directory:
 sudo javac -classpath .:classes:/opt/pi4j/lib/'*':./lib/'*' PushButton.java
-sudo java -classpath .:classes:/opt/pi4j/lib/'*':./lib/'*' PushButton
+sudo java -classpath .:classes:/opt/pi4j/lib/'*':./lib/'*' PushButton 69.20.234.126:22234 default default ghaith
