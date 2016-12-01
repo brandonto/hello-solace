@@ -84,15 +84,11 @@ public class PushButton {
                 System.out.println("pressed!");
                 SolPub hwp = new SolPub();
                 try {
-                    hwp.pub(args);
                     // When message is sent, blink
                     if(event.getState().isHigh()){
                         led1.blink(1000,1000);
                         led2.blink(1000,1000);
-                    }
-                    else{
-                        led1.blink(1000,1000);
-                        led2.blink(1000,1000);
+                        hwp.pub(args);
                     }
                 } catch(Exception e){
                     System.out.println("Error publishing message!");
