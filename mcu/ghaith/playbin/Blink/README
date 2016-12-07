@@ -1,2 +1,0 @@
-sudo javac -classpath .:classes:/opt/pi4j/lib/'*' BlinkGpioExample.java
-sudo java -classpath .:classes:/opt/pi4j/lib/'*' BlinkGpioExample
