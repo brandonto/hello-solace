@@ -1,3 +1,5 @@
+package com.hackathon.pushbutton;
+
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
@@ -7,7 +9,6 @@ import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import com.solacesystems.jcsmp.*;
-import com.solacesystems.common.*;
 
 /**
  *
@@ -62,7 +63,7 @@ public class PushButton {
         }
     }
 
-    public static void run(String[] args) throws InterruptedException {
+    public static void run(final String[] args) throws InterruptedException {
 
         System.out.println("Started.");
 
