@@ -38,8 +38,15 @@ UARTRecv(uint8_t *pui8Buffer)
 {
     int numChar = 0;
     uint8_t c;
+
+    //
+    // Loop until there is NULL terminator
+    //
     do
     {
+        //
+        // Fill buffer with next data received from UART
+        //
         c = (uint8_t)ROM_UARTCharGet(UART0_BASE);
         pui8Buffer[numChar++] = c;
     } while (c != '\0');
@@ -99,8 +106,6 @@ int itoa(int value, char *sp, int radix)
 
     return len;
 }
-
-
 
 int
 main(void)
@@ -208,14 +213,8 @@ main(void)
         ROM_ADCSequenceDataGet(ADC0_BASE, 0, &ui32Value);
 
         //
-        // Sends 'hello'
+        // Sends ADC value through UART
         //
-        //UARTSend((uint8_t *)"hello", 5);
-
-        /*sendBuf[0] = (uint8_t)((ui32Value >> 24) & 0xFF);
-        sendBuf[1] = (uint8_t)((ui32Value >> 16) & 0xFF);
-        sendBuf[2] = (uint8_t)((ui32Value >> 8) & 0xFF);
-        sendBuf[3] = (uint8_t)(ui32Value & 0xFF);*/
         itoaRet = itoa(ui32Value, (char*)sendBuf, 10);
         offset = 4-itoaRet;
         for (int i=0; i<offset; i++)
@@ -225,8 +224,6 @@ main(void)
             sendBuf[1] = sendBuf[0];
             sendBuf[0] = (uint8_t)'0';
         }
-
-        //sendBuf[ret++] = '\n';
         UARTSend(sendBuf, 4);
 
         ROM_GPIOPinWrite(GPIO_PORTF_BASE, LED_BLUE, LED_BLUE);
@@ -234,9 +231,9 @@ main(void)
         ROM_GPIOPinWrite(GPIO_PORTF_BASE, LED_BLUE, 0);
 
         //
-        // Waits until 'world' is received
+        // Waits until 'ack' is received
         //
-        while(!isSameString((const char *)recvBuf, "world"))
+        while(!isSameString((const char *)recvBuf, "ack"))
         {
             UARTRecv(recvBuf);
         }

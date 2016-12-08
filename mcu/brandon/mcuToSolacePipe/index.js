@@ -27,19 +27,6 @@ publisher.session = solace.SolclientFactory.createSession(
         if (event.sessionEventCode === solace.SessionEventCode.UP_NOTICE) {
             console.log('UP_NOTICE');
             startSendingToSolace = true;
-            /*if (publisher.session != null) {
-                var messageText = 'ayylmao';
-                var message = solace.SolclientFactory.createMessage();
-                message.setDestination(solace.SolclientFactory.createTopic(publisher.topicName));
-                message.setSdtContainer(solace.SDTField.create(solace.SDTFieldType.STRING, messageText));
-                message.setDeliveryMode(solace.MessageDeliveryModeType.DIRECT);
-                try {
-                    publisher.session.send(message);
-                    console.log('Message published.');
-                } catch (error) {
-                    console.log(error.toString());
-                }
-            }*/
         } else if (event.sessionEventCode === solace.SessionEventCode.CONNECTING) {
             console.log('CONNECTING');
         } else if (event.sessionEventCode === solace.SessionEventCode.DISCONNECTED) {
@@ -105,12 +92,12 @@ port.on('data', function (data) {
         }
     }
 
-    port.write('world\0', function (err) {
+    port.write('ack\0', function (err) {
         if (err) {
             console.log('Error on write' + err.message);
             return;
         }
-        console.log('send: world');
+        console.log('send: ack');
     });
 });
 
