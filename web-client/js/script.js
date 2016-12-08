@@ -1,9 +1,10 @@
 window.onload = function() {
 
-var mySession = null;
-var mySessionProperties = null;
-var imageIndex = 1;
-var ghaithImagePath = "images/selfPortrait"
+    var mySession = null;
+    var mySessionProperties = null;
+    var imageIndex = 1;
+    var ghaithImagePath = 'images/selfPortrait';
+    var pngFileExt = '.png';
 
     function changeBackgroundColor(color) {
         document.body.style.backgroundColor = color;
@@ -41,21 +42,8 @@ var ghaithImagePath = "images/selfPortrait"
 
 
     function ghaithHandler(message) {
-        // TODO (Ghaith)
-        /*var imageName = document.getElementById("ghaithImage").src;
-        console.log(imageName);
-        var myRegexp = /(\d).png/;
-        var match = myRegexp.exec(imageName)
-        console.log(match[1])
-        var res = Number(match[1])+1;
-        res = res+".png"
-        console.log(res)
-        imageName.replace(/(\d).png/, res);
-        console.log(imageName);
-        document.getElementById("ghaithImage").src = imageName;
-        console.log(imageName);*/
         imageIndex=(imageIndex%8)+1;
-        document.getElementById("ghaithImage").src = window.location.href + ghaithImagePath + imageIndex + '.png';
+        document.getElementById("ghaithImage").src = window.location.href + ghaithImagePath + imageIndex + pngFileExt;
         console.log(document.getElementById("ghaithImage").src);
     }
 
@@ -107,12 +95,10 @@ var ghaithImagePath = "images/selfPortrait"
             case 'ghaith':
                 ghaithHandler(message);
                 break;
-
             case 'shalin':
                 shalinHandler(message);
                 break;
         }
-
     };
     /**
      * Session event callback

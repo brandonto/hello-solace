@@ -11,6 +11,12 @@ html, body, .container-table {
     vertical-align: middle;
 }
 
+img.image-centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #middleText {
     color: #2f83bc;
     font-family: "Lucida Console";
