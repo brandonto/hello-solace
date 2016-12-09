@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ghaith" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ghaith" target="1.5" />
+      <module name="hello-solace_main" target="1.5" />
+      <module name="hello-solace_test" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

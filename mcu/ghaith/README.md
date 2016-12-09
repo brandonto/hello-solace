@@ -1,12 +1,19 @@
-Connect the board first:
-Connect the LED to pin18 of the CANAKIT pinout strip
+This program can only be run on a Raspberry Pi.
+After connecting a button and (optional) an LED to the RasPi, you can run this program
+to send a message through a Solace Router to a web client by pushing the button.
+For demo purposes, a message of topic `ghaith` sent to `69.20.234.126:22234` currently
+controls a GUI element on a web page that first needs to be hosted (see /web-client).
+
+RasPi setup:
+Connect the LED (with its resistor) to pin18 of the CANAKIT pinout strip
 Connect the button to pin27 of the CANAKIT pinout strip
 
-Before running the Java app:
-1- make sure the "pi4j" Java GPIO library is properly installed:
-   sudo -E curl -s get.pi4j.com | sudo -E bash
-2- All Solace JCSMP API jars from ../solace-api/lib/ are under ./lib/
+To build:
+Run `gradle build` in this directory.
 
-Run the following commands inside the current directory:
-sudo javac -classpath .:classes:/opt/pi4j/lib/'*':./lib/'*' PushButton.java
-sudo java -classpath .:classes:/opt/pi4j/lib/'*':./lib/'*' PushButton 69.20.234.126:22234 default default ghaith
+To run:
+```java -jar ./build/libs/hello-solace-1.0-SNAPSHOT.jar <msg_backbone_ip:port> <vpn> <client-username> <topic>```
+e.g. `java -jar ./build/libs/hello-solace-1.0-SNAPSHOT.jar 69.20.234.126:22234 default default ghaith`
+
+Note that the appliance `69.20.234.126:22234` has already been configured to listen to the topic `ghaith`
+coming from the RasPi.

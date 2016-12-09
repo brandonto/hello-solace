@@ -14,7 +14,7 @@ import com.solacesystems.jcsmp.*;
  *
  * @author Ghaith Dalla-Ali
  */
-public class PushButton {
+class PushButton {
 
     public static void main(String[] args) throws InterruptedException {
         // Check command line arguments
@@ -41,7 +41,7 @@ public class PushButton {
             
             final Topic topic = JCSMPFactory.onlyInstance().createTopic(args[3]);
             
-            /** Anonymous inner-class for handling publishing events */
+            /* Anonymous inner-class for handling publishing events */
             XMLMessageProducer prod = session.getMessageProducer(new JCSMPStreamingPublishEventHandler() {
                 public void responseReceived(String messageID) {
                     System.out.println("Producer received response for msg: " + messageID);
@@ -63,7 +63,7 @@ public class PushButton {
         }
     }
 
-    public static void run(final String[] args) throws InterruptedException {
+    private static void run(final String[] args) throws InterruptedException {
 
         System.out.println("Started.");
 
@@ -80,7 +80,6 @@ public class PushButton {
 
         // create and register gpio pin listener
         myButton.addListener(new GpioPinListenerDigital() {
-            @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                 System.out.println("pressed!");
                 SolPub hwp = new SolPub();
@@ -97,9 +96,6 @@ public class PushButton {
 
             }
         });
-
-        // // continuously blink the led every 1/2 second for 15 seconds
-        // led1.blink(500, 15000);
         
         System.out.println("PRESS <CTRL-C> TO STOP THE PROGRAM.");
 
@@ -108,10 +104,6 @@ public class PushButton {
             Thread.sleep(500);
         } 
 
-
-        // stop all GPIO activity/threads
-        // (this method will forcefully shutdown all GPIO monitoring threads and scheduled tasks)
-        // gpio.shutdown();   <--- implement this method call if you wish to terminate the Pi4J GPIO controller
     }
 }
 
