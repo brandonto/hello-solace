@@ -12,8 +12,8 @@ To build:
 Run `gradle build` in this directory.
 
 To run:
-```java -jar ./build/libs/hello-solace-1.0-SNAPSHOT.jar <msg_backbone_ip:port> <vpn> <client-username> <topic>```
-e.g. `java -jar ./build/libs/hello-solace-1.0-SNAPSHOT.jar 69.20.234.126:22234 default default ghaith`
+```java -jar ./build/libs/hello-solace-1.0-SNAPSHOT-all.jar <msg_backbone_ip:port> <vpn> <client-username> <topic>```
+e.g. `java -jar ./build/libs/hello-solace-1.0-SNAPSHOT-all.jar 69.20.234.126:22234 default default ghaith`
 
 Note that the appliance `69.20.234.126:22234` has already been configured to listen to the topic `ghaith`
 coming from the RasPi.
