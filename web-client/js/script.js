@@ -42,7 +42,7 @@ window.onload = function() {
 
 
     function ghaithHandler(message) {
-        imageIndex=(imageIndex%8)+1;
+        imageIndex=(imageIndex%4)+1;
         document.getElementById("ghaithImage").src = window.location.href + ghaithImagePath + imageIndex + pngFileExt;
         console.log(document.getElementById("ghaithImage").src);
     }
